@@ -1,0 +1,68 @@
+{{#if leads}}
+  <div class="row">
+    {{#each leads}}
+
+     <div class="container1">
+        
+   <div class="colunm">{{this.name}}</div>
+   <div class="colunm">{{this.price}}</div>
+   <div class="colunm">{{this.status}}</div>
+   <div class="colunm">{{this.user}}</div>
+
+   <div class="colunm">{{this.date}}</div>
+   
+    </div>
+
+      
+       
+    {{/each}}
+  </div>
+{{else}}
+  <h1>Список сделок пуст!</h1>
+{{/if}}
+
+<input type="text" id="inn" class="inputn" placeholder="Введите подстроку для поиска от 3 симв" autocomplete="off" />
+{{!-- <a id="srch" onclick="s(this, inn)" href="/?query=">Найти</a> --}}
+<a id="srch" onclick="s(this, inn)" ><button>Найти</button> </a>
+<div  id="err_length" class="hidden" >Подстрока поиска меньше трех символов</div>
+<div>Для выхода из фильтра введи пустую строку</div>
+
+<style>
+  .container1  {
+    display: flex;
+   
+   justify-content: space-around;
+   flex-flow: row wrap;
+  }
+  .colunm  {
+    width: calc(100%/5);
+    text-align: center;
+  }
+  .inputn {
+    margin-top: 40px;
+    width: 350px;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  //document.getElementById("err_length").className = "hidden";
+  //if (b.value.length < 3) console.log('length < 3');
+  //const test = (a, b) => if (b.value.length < 3) console.log('length < 3');
+  const s = (a, b) => {
+    console.log('b.value ', b.value);
+    if (b.value.length < 3 & b.value.length != 0) {
+      console.log('length < 3');
+      document.getElementById("err_length").className = "displey";
+      b.value = '';
+      //document.getElementById("err_length").className = "displey";
+      return;
+      }
+    if (b.value.length === 0) a.href = '/'; else a.href = "/?query=" + b.value;
+    }
+  //b.value = '';
+
+</script>
+
